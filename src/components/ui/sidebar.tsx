@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "~/lib/utils";
-import Link, { LinkProps } from "next/link";
-import React, { useState, createContext, useContext } from "react";
+import Link, { type LinkProps } from "next/link";
+import React, { useState, createContext, useContext, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 
@@ -42,8 +42,8 @@ export const SidebarProvider = ({
 }) => {
   const [openState, setOpenState] = useState(false);
 
-  const open = openProp !== undefined ? openProp : openState;
-  const setOpen = setOpenProp !== undefined ? setOpenProp : setOpenState;
+  const open = openProp ?? openState;
+  const setOpen = setOpenProp ?? setOpenState;
 
   return (
     <SidebarContext.Provider value={{ open, setOpen, animate: animate }}>
@@ -161,19 +161,27 @@ export const SidebarLink = ({
   ...props
 }: {
   link: Links;
+  isSelect?: boolean;
   className?: string;
   props?: LinkProps;
 }) => {
   const { open, animate } = useSidebar();
+
+  // if current herf is equal to the link href, then the link is selected
+ 
+  // if isSelect is true, then title will be bold and icon will be blue
   return (
+
     <Link
       href={link.href}
       className={cn(
         "flex items-center justify-start gap-2  group/sidebar py-2",
+        window !== undefined &&  link.href === window.location.pathname ? "font-bold text-primary-500 dark:text-primary-400" : "text-neutral-700 dark:text-neutral-200",
         className
       )}
       {...props}
     >
+      
       {link.icon}
 
       <motion.span

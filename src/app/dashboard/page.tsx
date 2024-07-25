@@ -35,8 +35,9 @@ import {
 export default  function DashboardPage() {
     
         return (
-            <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
+            <div className="chart-wrapper mx-auto flex w-full lex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
               <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
+                <h1>hi</h1>
                 <Card
                   className="lg:max-w-md" x-chunk="charts-01-chunk-0"
                 >
