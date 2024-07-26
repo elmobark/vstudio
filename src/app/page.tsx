@@ -11,7 +11,7 @@ export default async function HomePage() {
     <main className="w-full flex flex-col items-center justify-center overflow-hidden">
      
       <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center relative z-20">
-        Value Studio
+        فاليو ستوديو
       </h1>
       <div className="w-[40rem] h-40 relative">
         {/* Gradients */}
@@ -31,7 +31,7 @@ export default async function HomePage() {
         />
  
         {/* Radial Gradient to prevent sharp edges */}
-        <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+        <div className="absolute inset-0 w-full h-full dark:bg-black bg-white [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,red)]"></div>
       </div>
     </main>
     </>
