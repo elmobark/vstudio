@@ -8,6 +8,8 @@ export const env = createEnv({
    */
   server: {
     POSTGRES_URL: z.string().url(),
+    OPENAI_API_KEY: z.string(),
+    POSTGRES_PRISMA_URL: z.string().url(),
     NEXTAUTH_SECRET:
       process.env.NODE_ENV === "production"
         ? z.string()
@@ -41,6 +43,8 @@ export const env = createEnv({
    */
   runtimeEnv: {
     POSTGRES_URL: process.env.POSTGRES_URL,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
     NODE_ENV: process.env.NODE_ENV,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,

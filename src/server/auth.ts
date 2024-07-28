@@ -14,7 +14,7 @@ import {
   sessions,
   users,
   verificationTokens,
-} from "~/server/db/schema";
+} from "~/server/db/schemas/user";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -43,6 +43,13 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  pages:{
+    signIn: '/auth/signin',
+  signOut: '/auth/signout',
+  error: '/auth/error',
+  verifyRequest: '/auth/verify',
+  newUser: '/auth/post-signin',
+  },
   callbacks: {
     session: ({ session, user }) => ({
       ...session,
@@ -56,6 +63,7 @@ export const authOptions: NextAuthOptions = {
     usersTable: users,
     accountsTable: accounts,
     sessionsTable: sessions,
+    
     verificationTokensTable: verificationTokens,
   }) as Adapter,
   providers: [

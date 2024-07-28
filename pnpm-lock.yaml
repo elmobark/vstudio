@@ -122,9 +122,6 @@ importers:
       '@tsparticles/slim':
         specifier: ^3.5.0
         version: 3.5.0
-      '@vercel/postgres':
-        specifier: ^0.9.0
-        version: 0.9.0
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -4576,6 +4573,7 @@ snapshots:
   '@neondatabase/serverless@0.9.4':
     dependencies:
       '@types/pg': 8.11.6
+    optional: true
 
   '@next/env@14.2.5': {}
 
@@ -5785,6 +5783,7 @@ snapshots:
       '@types/node': 20.14.12
       pg-protocol: 1.6.1
       pg-types: 4.0.2
+    optional: true
 
   '@types/prop-types@15.7.12': {}
 
@@ -5961,6 +5960,7 @@ snapshots:
       bufferutil: 4.0.8
       utf-8-validate: 6.0.4
       ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+    optional: true
 
   accessor-fn@1.5.1: {}
 
@@ -6118,6 +6118,7 @@ snapshots:
   bufferutil@4.0.8:
     dependencies:
       node-gyp-build: 4.8.1
+    optional: true
 
   busboy@1.6.0:
     dependencies:
@@ -7477,7 +7478,8 @@ snapshots:
       lower-case: 2.0.2
       tslib: 2.6.3
 
-  node-gyp-build@4.8.1: {}
+  node-gyp-build@4.8.1:
+    optional: true
 
   normalize-path@3.0.0: {}
 
@@ -7532,7 +7534,8 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.0.0
 
-  obuf@1.1.2: {}
+  obuf@1.1.2:
+    optional: true
 
   oidc-token-hash@5.0.3: {}
 
@@ -7587,11 +7590,14 @@ snapshots:
 
   path-type@4.0.0: {}
 
-  pg-int8@1.0.1: {}
+  pg-int8@1.0.1:
+    optional: true
 
-  pg-numeric@1.0.2: {}
+  pg-numeric@1.0.2:
+    optional: true
 
-  pg-protocol@1.6.1: {}
+  pg-protocol@1.6.1:
+    optional: true
 
   pg-types@4.0.2:
     dependencies:
@@ -7602,6 +7608,7 @@ snapshots:
       postgres-date: 2.1.0
       postgres-interval: 3.0.0
       postgres-range: 1.1.4
+    optional: true
 
   phenomenon@1.6.0: {}
 
@@ -7658,17 +7665,22 @@ snapshots:
       picocolors: 1.0.1
       source-map-js: 1.2.0
 
-  postgres-array@3.0.2: {}
+  postgres-array@3.0.2:
+    optional: true
 
   postgres-bytea@3.0.0:
     dependencies:
       obuf: 1.1.2
+    optional: true
 
-  postgres-date@2.1.0: {}
+  postgres-date@2.1.0:
+    optional: true
 
-  postgres-interval@3.0.0: {}
+  postgres-interval@3.0.0:
+    optional: true
 
-  postgres-range@1.1.4: {}
+  postgres-range@1.1.4:
+    optional: true
 
   postgres@3.4.4: {}
 
@@ -8338,6 +8350,7 @@ snapshots:
   utf-8-validate@6.0.4:
     dependencies:
       node-gyp-build: 4.8.1
+    optional: true
 
   util-deprecate@1.0.2: {}
 
@@ -8441,6 +8454,7 @@ snapshots:
     optionalDependencies:
       bufferutil: 4.0.8
       utf-8-validate: 6.0.4
+    optional: true
 
   yallist@4.0.0: {}
 

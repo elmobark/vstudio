@@ -1,17 +1,18 @@
-"use client";
+
 import {  IconBolt, IconBooks, IconGraph,  IconLanguage,  IconMessage2,  IconSeeding, IconSettings, IconShoppingBag, IconStethoscope, IconUserDollar } from "@tabler/icons-react";
-import { useState } from "react";
+// import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import Logo from "~/components/ui/logo";
 import { Sidebar, SidebarBody, SidebarLink } from "~/components/ui/sidebar";
 import { cn } from "~/lib/utils";
 import { ThemeToggle } from "./_components/theme-button";
 import { Button } from "~/components/ui/button";
-import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "~/components/ui/breadcrumb";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from "~/components/ui/breadcrumb";
+import { getServerAuthSession } from "~/server/auth";
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const [open, setOpen] = useState(false);
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const session = await getServerAuthSession();
+  const username = session?.user.name??'انت';
   const links = [
     {
       label: "الرئيسية",
@@ -78,12 +79,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       ),
     },
     {
-      label: "انت",
+      label: session ? username??'انت' : "تسجيل الدخول",
       href: "/dashboard/profile",
       icon: (
         <Avatar className="h-5 w-5 rounded-full">
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src={session?.user?.image??''} alt={session ? username : "تسجيل الدخول"} />
+          <AvatarFallback>
+            {/* get the first letter of the first and lastthe user name */}
+            {session ? username[0] : "تسجيل الدخول"[0]}
+
+          </AvatarFallback>
         </Avatar>
       ),
     },
@@ -95,7 +100,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         "h-screen" // for your use case, use `h-screen` instead of `h-[60vh]`
       )}
     >
-      <Sidebar open={open} setOpen={setOpen}>
+      <Sidebar >
 
         <SidebarBody className="justify-between gap-10">
 
@@ -123,6 +128,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 }
 
 const Dashboard = ({ children }: { children: React.ReactNode }) => {
+
   return (
     <div className="flex flex-col flex-1">
       <Topbar>
@@ -137,9 +143,9 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
         </Button>
         &nbsp;
         {/* subscribtion button , Breadcrumb */}
-        <SubscriptionButton/>
+        {/* <SubscriptionButton/> */}
         &nbsp;
-        <DashboardBreadcrumb/>
+        {/* <DashboardBreadcrumb/> */}
       </Topbar> 
       <div className="p-2 md:p-10 ltr:rounded-tl-2xl rtl:rounded-tr-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
         {children}

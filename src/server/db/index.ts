@@ -1,6 +1,14 @@
-import { drizzle } from 'drizzle-orm/vercel-postgres';
-import { sql } from "@vercel/postgres";
-import * as schema from './schema';
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 
-// Use this object to send drizzle queries to your DB
-export const db = drizzle(sql,{schema});
+import { env } from "~/env";
+import * as schema from "./schemas";
+
+const globalForDb = globalThis as unknown as {
+    conn: postgres.Sql | undefined;
+  };
+  
+  const conn = globalForDb.conn ?? postgres(env.POSTGRES_URL);
+  if (env.NODE_ENV !== "production") globalForDb.conn = conn;
+  
+export const db = drizzle(conn,{schema});

@@ -1,13 +1,25 @@
 import { SparklesCore } from "~/components/ui/sparkles";
 import Navbar from "./_components/navbar";
+import { getServerAuthSession } from "~/server/auth";
 
 
 
 export default async function HomePage() {
+  const session = await getServerAuthSession();
+
   return (
 <>
 
-    <Navbar/>
+    <Navbar>
+    {session ? (
+      <>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/api/auth/signout">Logout</a>
+      </>
+    ) : (
+      <a href="/api/auth/signin">Login</a>
+    )}
+    </Navbar>
     <main className="w-full flex flex-col items-center justify-center overflow-hidden">
      
       <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center relative z-20">
@@ -27,11 +39,11 @@ export default async function HomePage() {
           maxSize={1}
           particleDensity={1200}
           className="w-full h-full"
-          particleColor="hsl(var(--primary))"
+          particleColor="red"
         />
  
         {/* Radial Gradient to prevent sharp edges */}
-        <div className="absolute inset-0 w-full h-full dark:bg-black bg-white [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,red)]"></div>
+        <div className="absolute inset-0 w-full h-full bg-background [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
       </div>
     </main>
     </>

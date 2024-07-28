@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "~/lib/utils";
 import Link, { type LinkProps } from "next/link";
-import React, { useState, createContext, useContext, useEffect } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 
@@ -54,8 +54,7 @@ export const SidebarProvider = ({
 
 export const Sidebar = ({
   children,
-  open,
-  setOpen,
+  
   animate,
 }: {
   children: React.ReactNode;
@@ -63,6 +62,8 @@ export const Sidebar = ({
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   animate?: boolean;
 }) => {
+  const [open, setOpen] = useState(false);
+
   return (
     <SidebarProvider open={open} setOpen={setOpen} animate={animate}>
       {children}
